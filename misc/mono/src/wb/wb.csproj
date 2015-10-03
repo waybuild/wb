@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DC0E52DD-0059-4DDB-8317-E0D011BCB5EB}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>wb</RootNamespace>
+    <AssemblyName>wb</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\build\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App\Commands\Fetch.cs" />
+    <Compile Include="App\Commands\Find.cs" />
+    <Compile Include="App\Commands\Scripts\DockerRemoveImage.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DockerRemoveImage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App\Commands\Test.cs" />
+    <Compile Include="App\Const.cs" />
+    <Compile Include="Formatters\FormatterFactory.cs" />
+    <Compile Include="Layers\LayerComparer.cs" />
+    <Compile Include="Slices\Slice.cs" />
+    <Compile Include="Slices\SliceDirectoryList.cs" />
+    <Compile Include="Utils\Fs.cs" />
+    <Compile Include="Utils\SemName.cs" />
+    <Compile Include="Slices\SliceSection.cs" />
+    <Compile Include="Slices\SliceDirectory.cs" />
+    <Compile Include="Layers\Layer.cs" />
+    <Compile Include="Layers\LayerList.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\SemVersion.cs" />
+    <Compile Include="App\Args.cs" />
+    <Compile Include="App\Commands\Make.cs" />
+    <Compile Include="App\Commands\Help.cs" />
+    <Compile Include="App\Commands\ICommand.cs" />
+    <Compile Include="App\Messages\HelpMsg.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HelpMsg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Text.cs" />
+    <Compile Include="Utils\Time.cs" />
+    <Compile Include="Formatters\Docker\FromWriter.cs" />
+    <Compile Include="Formatters\Docker\RunWriter.cs" />
+    <Compile Include="Formatters\Docker\FormatterDocker.cs" />
+    <Compile Include="Formatters\IFormatter.cs" />
+    <Compile Include="Formatters\Shell\FormatterShell.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App\Commands\Scripts\DockerRemoveImage.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DockerRemoveImage.cs</LastGenOutput>
+    </Content>
+    <Content Include="App\Messages\HelpMsg.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>HelpMsg.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
